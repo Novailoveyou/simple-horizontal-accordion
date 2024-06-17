@@ -6,8 +6,8 @@ var ids = {
 }
 
 var classes = {
-  active: 'active',
   trigger: 'trigger',
+  active: 'active',
 }
 
 /**
@@ -20,13 +20,11 @@ function isEnterOrSpace(key) {
 /**
  * @param {MouseEvent | KeyboardEvent} event
  */
-function accordionOnAction(event) {
+function accordionOnInteraction(event) {
   if (event.type === 'keydown' && !isEnterOrSpace(event.key)) return
 
-  // * Action outside of triggers
   if (!event.target.classList.contains(classes.trigger)) return
 
-  // * Action on active trigger
   if (event.target.classList.contains(classes.active)) return
 
   var triggers = event.currentTarget.getElementsByClassName(classes.trigger)
@@ -42,8 +40,8 @@ function DOMContentLoaded() {
   var accordion = document.getElementById(ids.accordion)
 
   if (accordion) {
-    accordion.addEventListener('click', accordionOnAction)
-    accordion.addEventListener('keydown', accordionOnAction)
+    accordion.addEventListener('click', accordionOnInteraction)
+    accordion.addEventListener('keydown', accordionOnInteraction)
   }
 }
 

@@ -32,13 +32,16 @@ main {
   min-width: 10rem;
 }
 
-.active {
+.trigger * {
+  pointer-events: none;
+}
+
+.trigger.active {
   cursor: inherit;
   min-width: 40%;
 }
 
-.active .title,
-.active .description {
+.trigger.active * {
   pointer-events: initial;
 }
 
@@ -46,5 +49,4 @@ main {
 .description {
   max-width: 65ch;
   margin: 0;
-  pointer-events: none;
 }
