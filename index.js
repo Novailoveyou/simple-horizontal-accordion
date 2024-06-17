@@ -1,3 +1,9 @@
+/**
+ * @description
+ * There are intentional uses of `var` instead of `let` or `const` to support older browsers while not using any compilers & builders.
+ * The same goes for `function` instead of arrow functions, `for` loop instead of `forEach`, `getElementsByClassName` instead of `querySelectorAll`, etc.
+ */
+
 var ids = {
   accordion: 'accordion',
 }
@@ -8,28 +14,23 @@ var classes = {
 }
 
 /**
- * @param {KeyboardEvent} event
+ * @param {KeyboardEvent['key']} key
  */
-function isEnterOrSpace(event) {
-  return (
-    event.key === 'Enter' ||
-    event.key === 13 ||
-    event.key === ' ' ||
-    event.key === 32
-  )
+function isEnterOrSpace(key) {
+  return key === 'Enter' || key === 13 || key === ' ' || key === 32
 }
 
 /**
  * @param {MouseEvent | KeyboardEvent} event
  */
-function accordionOnTrigger(event) {
-  if (event.type === 'keydown' && !isEnterOrSpace(event)) return
+function accordionOnAction(event) {
+  if (event.type === 'keydown' && !isEnterOrSpace(event.key)) return
 
+  // * Action outside of triggers
   if (!event.target.classList.contains(classes.trigger)) return
 
+  // * Action on active trigger
   if (event.target.classList.contains(classes.active)) return
-
-  if (event.target === event.currentTarget) return
 
   var triggers = event.currentTarget.getElementsByClassName(classes.trigger)
 
@@ -44,8 +45,8 @@ function DOMContentLoaded() {
   var accordion = document.getElementById(ids.accordion)
 
   if (accordion) {
-    accordion.addEventListener('click', accordionOnTrigger)
-    accordion.addEventListener('keydown', accordionOnTrigger)
+    accordion.addEventListener('click', accordionOnAction)
+    accordion.addEventListener('keydown', accordionOnAction)
   }
 }
 
