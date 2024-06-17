@@ -1,8 +1,5 @@
-/**
- * @description
- * There are intentional uses of `var` instead of `let` or `const` to support older browsers while not using any compilers & builders.
- * The same goes for `function` instead of arrow functions, `for` loop instead of `forEach`, `getElementsByClassName` instead of `querySelectorAll`, etc.
- */
+// * There are intentional uses of `var` instead of `let` or `const` to support older browsers while not using any compilers & builders.
+// * The same goes for `function` instead of arrow functions, `for` loop instead of `forEach`, `getElementsByClassName` instead of `querySelectorAll`, etc.
 
 var ids = {
   accordion: 'accordion',
