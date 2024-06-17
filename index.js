@@ -22,19 +22,19 @@ function isEnterOrSpace(event) {
 /**
  * @param {MouseEvent | KeyboardEvent} event
  */
-function accordionOnClick(event) {
+function accordionOnTrigger(event) {
   if (event.type === 'keydown' && !isEnterOrSpace(event)) return
 
-  if (event.target === event.currentTarget) return
+  if (!event.target.classList.contains(classes.trigger)) return
 
   if (event.target.classList.contains(classes.active)) return
 
-  if (event.target.tagName !== 'A') return
+  if (event.target === event.currentTarget) return
 
   var triggers = event.currentTarget.getElementsByClassName(classes.trigger)
 
-  for (var i = 0; i < triggers.length; i++) {
-    triggers[i].classList.remove(classes.active)
+  for (var idx = 0; idx < triggers.length; idx++) {
+    triggers[idx].classList.remove(classes.active)
   }
 
   event.target.classList.add(classes.active)
@@ -44,8 +44,8 @@ function DOMContentLoaded() {
   var accordion = document.getElementById(ids.accordion)
 
   if (accordion) {
-    accordion.addEventListener('click', accordionOnClick)
-    accordion.addEventListener('keydown', accordionOnClick)
+    accordion.addEventListener('click', accordionOnTrigger)
+    accordion.addEventListener('keydown', accordionOnTrigger)
   }
 }
 
